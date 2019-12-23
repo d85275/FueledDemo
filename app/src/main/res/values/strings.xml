@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FueledDemo</string>
+
+    <string name="loading">Loading&#8230;</string>
+    <string name="no_network">No network connection, please try again.</string>
+    <string name="error">Something went wrong, please try again.</string>
+    <string name="error_title">Error</string>
+    <string name="bt_go">GO</string>
+    <string name="bt_retry">Retry</string>
+    <string name="bt_confirm">Confirm</string>
+    <string name="bt_cancel">Cancel</string>
+    <string name="empty_title">&#160;</string>
+    <string name="hidden">HIDDEN</string>
+    <string name="nearby">NEARBY</string>
+
+    <string name="navigate_error">Cannot find Google Maps for navigating</string>
+
+    <string name="nearby_restaurants">Nearby Restaurants</string>
+    <string name="hidden_restaurants">Hidden Restaurants</string>
+    <string name="address">%1$s, %2$s </string>
+
+</resources>

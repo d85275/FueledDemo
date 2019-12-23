@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript"
+            src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript">
+
+    var map;
+    var center;
+    var bounds;
+    function initialize() {
+        var lat = window.Android.getLat();
+        var lng = window.Android.getLng();
+        center = new google.maps.LatLng(lat,lng);
+        setInitialMap();
+    }
+
+    // resize after map is loaded
+    google.maps.event.addDomListener(window, "resize", function() {
+        var center = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+    });
+
+    function setInitialMap(){
+        var myOptions = {
+           zoom: 15,
+           center: center,
+           mapTypeId: google.maps.MapTypeId.ROADMAP,
+           zoomControl: false,
+           mapTypeControl: false,
+           streetViewControl: false
+        }
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        markLocation();
+    }
+
+    function markLocation() {
+        var marker = new google.maps.Marker({
+            map: map,
+            position: center,
+        });
+        marker.setMap(map);
+        bounds = new google.maps.LatLngBounds();
+        setMarkerClickListener(marker);
+     }
+
+    function setMarkerClickListener(marker){
+        google.maps.event.addListener(marker,'click',function(){
+            adjustZoom();
+        });
+    }
+     function adjustZoom(){
+		bounds.extend(center);
+        // try to center the map at the center of all markers.
+        map.setCenter(bounds.getCenter());
+        map.fitBounds(bounds);
+        // set the min zoom of the map.
+        map.setZoom(15);
+     }
+     function setCenter(){
+        map.setCenter(center);
+     }
+
+    </script>
+</head>
+<body style="margin:0px; padding:0px;" onload="initialize()">
+<div id="map_canvas" style="width:100%; height:100%"></div>
+</body>
+</html>
